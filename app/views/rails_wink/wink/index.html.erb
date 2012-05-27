@@ -1,0 +1,67 @@
+<form method="POST" action="<%= url_for submit_url %>" class="form-horizontal">
+  <fieldset>
+    <div class="control-group">
+      <label class="control-label" for="email_addr">Your E-mail:</label>
+      <div class="controls">
+        <input type="email" id="email_addr" name="email_addr" class="input-xlarge" value="<%= @email %>">
+        <p class="help-block">Optional. This allows us to contact you for follow-up.</p>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="desc">Description:</label>
+      <div class="controls">
+        <textarea id="desc" class="input-xlarge" name="desc" rows="3"></textarea>
+        <p class="help-block">Please describe the bug you encountered.</p>
+      </div>
+    </div>
+    <div class="control-group">
+      <div class="controls">
+        <label class="checkbox">
+          <input type="checkbox" id="show_json">
+          Show me what information is being collected
+        </label>
+      </div>
+    </div>
+    <div class="control-group" id="json_data">
+      <div class="controls">
+        <textarea id="json" class="input-xlarge" name="json" rows="10" readonly></textarea>
+      </div>
+    </div>
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary">Submit Report</button>
+      <button class="btn">Cancel</button>
+    </div>
+  </fieldset>
+</form>
+
+<script>
+  $(function() {
+    var chk = $('#show_json');
+
+    chk.bind('change', function() {
+      $('#json_data').toggle();
+    });
+
+    if (!chk.is(':checked')) {
+      $('#json_data').hide();
+    }
+
+    var profile = {
+      screen:     {},
+      browser:    {},
+      modernizr:  {}
+    };
+    profile.screen.width = window.screen.width;
+    profile.screen.height = window.screen.height;
+
+    profile.browser.userAgent = window.navigator.userAgent;
+    profile.browser.width = window.innerWidth;
+    profile.browser.height = window.innerHeight;
+    profile.browser.availWidth = window.screen.availWidth;
+    profile.browser.availHeight = window.screen.availHeight;
+
+    profile.modernizr = winkModernizr;
+
+    $('#json').val(JSON.stringify(profile, undefined, 4));
+  });
+</script>

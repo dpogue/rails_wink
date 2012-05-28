@@ -1,0 +1,7 @@
+<% if @from %>Submitted by: <%= @from %>
+
+<% end %>Description of bug:
+<%= @desc %>
+
+Browser Capabilities:
+<%= raw JSON.pretty_generate(@datadump) %>

@@ -7,7 +7,7 @@ module RailsWink
     end
 
     def submit
-      email = params[:email]
+      email = params[:email_addr]
       description = params[:desc]
       jsobj = params[:json]
 
@@ -18,7 +18,7 @@ module RailsWink
       end
 
       if jsobj && jsobj = JSON.parse(jsobj)
-        # TODO: Wrap it all up and send it as an email
+        WinkMailer.report(jsobj, description, email).deliver
       end
 
       render

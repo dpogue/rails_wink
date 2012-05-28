@@ -13,6 +13,9 @@ This was originally implemented for PHP by Denim & Steel: https://github.com/den
 ##Installation
 Add `gem 'rails_wink'` to your Gemfile.
 
+Generate the wink.yml configuration file with `rails g rails_wink:config`.  
+Edit the values to point to your support/bug tracking email address.
+
 Mount the engine in your Rails application's config/routes.rb, like this:
 
 ```ruby
@@ -23,6 +26,8 @@ Rails.application.routes.draw do
 
 end
 ```
+
+Run your application, and visit /wink.
 
 You can now do cool things like `link_to 'Report a Bug', wink.root_url` in your
 application's views.

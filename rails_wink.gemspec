@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
     Originally written for PHP by Denim&Steel, this is a Rails 3 mountable engine that can be used as part of any Rails application.
   }
 
-  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
+  s.files = Dir["{app,config,db,lib}/**/*"] + ["LICENSE", "Rakefile", "README.md"]
 
   s.add_dependency "rails", "~> 3.2.3"
 end

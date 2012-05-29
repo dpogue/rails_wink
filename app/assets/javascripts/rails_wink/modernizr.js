@@ -5,16 +5,16 @@
 
 
 
-window.winkModernizr = (function( window, document, undefined ) {
+window.Modernizr = (function( window, document, undefined ) {
 
     var version = '2.5.3',
 
-    winkModernizr = {},
+    Modernizr = {},
 
 
     docElement = document.documentElement,
 
-    mod = 'winkModernizr',
+    mod = 'Modernizr',
     modElem = document.createElement(mod),
     mStyle = modElem.style,
 
@@ -242,8 +242,8 @@ window.winkModernizr = (function( window, document, undefined ) {
                 hash[children[len].id] = children[len];
             }
 
-                       winkModernizr['touch'] = ('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch || (hash['touch'] && hash['touch'].offsetTop) === 9; 
-             winkModernizr['csstransforms3d'] = (hash['csstransforms3d'] && hash['csstransforms3d'].offsetLeft) === 9 && hash['csstransforms3d'].offsetHeight === 3;                  winkModernizr['generatedcontent'] = (hash['generatedcontent'] && hash['generatedcontent'].offsetHeight) >= 1;                       winkModernizr['fontface'] = /src/i.test(cssText) &&
+                       Modernizr['touch'] = ('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch || (hash['touch'] && hash['touch'].offsetTop) === 9; 
+             Modernizr['csstransforms3d'] = (hash['csstransforms3d'] && hash['csstransforms3d'].offsetLeft) === 9 && hash['csstransforms3d'].offsetHeight === 3;                  Modernizr['generatedcontent'] = (hash['generatedcontent'] && hash['generatedcontent'].offsetHeight) >= 1;                       Modernizr['fontface'] = /src/i.test(cssText) &&
                                                                   cssText.indexOf(rule.split(' ')[0]) === 0;            }, len, tests);
 
     })([
@@ -273,7 +273,7 @@ window.winkModernizr = (function( window, document, undefined ) {
     };
 
     tests['canvastext'] = function() {
-        return !!(winkModernizr['canvas'] && is(document.createElement('canvas').getContext('2d').fillText, 'function'));
+        return !!(Modernizr['canvas'] && is(document.createElement('canvas').getContext('2d').fillText, 'function'));
     };
 
 
@@ -291,7 +291,7 @@ window.winkModernizr = (function( window, document, undefined ) {
 
 
     tests['touch'] = function() {
-        return winkModernizr['touch'];
+        return Modernizr['touch'];
     };
 
     tests['geolocation'] = function() {
@@ -421,7 +421,7 @@ window.winkModernizr = (function( window, document, undefined ) {
 
                         if ( ret && 'webkitPerspective' in docElement.style ) {
 
-                      ret = winkModernizr['csstransforms3d'];
+                      ret = Modernizr['csstransforms3d'];
         }
         return ret;
     };
@@ -434,11 +434,11 @@ window.winkModernizr = (function( window, document, undefined ) {
 
 
     tests['fontface'] = function() {
-        return winkModernizr['fontface'];
+        return Modernizr['fontface'];
     };
 
     tests['generatedcontent'] = function() {
-        return winkModernizr['generatedcontent'];
+        return Modernizr['generatedcontent'];
     };
     tests['video'] = function() {
         var elem = document.createElement('video'),
@@ -530,7 +530,7 @@ window.winkModernizr = (function( window, document, undefined ) {
     };
 
     function webforms() {
-                                            winkModernizr['input'] = (function( props ) {
+                                            Modernizr['input'] = (function( props ) {
             for ( var i = 0, len = props.length; i < len; i++ ) {
                 attrs[ props[i] ] = !!(props[i] in inputElem);
             }
@@ -539,7 +539,7 @@ window.winkModernizr = (function( window, document, undefined ) {
             }
             return attrs;
         })('autocomplete autofocus list placeholder max min multiple pattern required step'.split(' '));
-                            winkModernizr['inputtypes'] = (function(props) {
+                            Modernizr['inputtypes'] = (function(props) {
 
             for ( var i = 0, bool, inputElemType, defaultView, len = props.length; i < len; i++ ) {
 
@@ -585,37 +585,37 @@ window.winkModernizr = (function( window, document, undefined ) {
     for ( var feature in tests ) {
         if ( hasOwnProperty(tests, feature) ) {
                                     featureName  = feature.toLowerCase();
-            winkModernizr[featureName] = tests[feature]();
+            Modernizr[featureName] = tests[feature]();
 
-            classes.push((winkModernizr[featureName] ? '' : 'no-') + featureName);
+            classes.push((Modernizr[featureName] ? '' : 'no-') + featureName);
         }
     }
 
-    winkModernizr.input || webforms();
+    Modernizr.input || webforms();
 
 
-     winkModernizr.addTest = function ( feature, test ) {
+     Modernizr.addTest = function ( feature, test ) {
        if ( typeof feature == 'object' ) {
          for ( var key in feature ) {
            if ( hasOwnProperty( feature, key ) ) {
-             winkModernizr.addTest( key, feature[ key ] );
+             Modernizr.addTest( key, feature[ key ] );
            }
          }
        } else {
 
          feature = feature.toLowerCase();
 
-         if ( winkModernizr[feature] !== undefined ) {
-                                              return winkModernizr;
+         if ( Modernizr[feature] !== undefined ) {
+                                              return Modernizr;
          }
 
          test = typeof test == 'function' ? test() : test;
 
-              winkModernizr[feature] = test;
+              Modernizr[feature] = test;
 
        }
 
-       return winkModernizr; 
+       return Modernizr; 
      };
  
 
@@ -623,24 +623,24 @@ window.winkModernizr = (function( window, document, undefined ) {
     modElem = inputElem = null;
 
 
-    winkModernizr._version      = version;
+    Modernizr._version      = version;
 
-    winkModernizr._prefixes     = prefixes;
-    winkModernizr._domPrefixes  = domPrefixes;
-    winkModernizr._cssomPrefixes  = cssomPrefixes;
+    Modernizr._prefixes     = prefixes;
+    Modernizr._domPrefixes  = domPrefixes;
+    Modernizr._cssomPrefixes  = cssomPrefixes;
 
 
-    winkModernizr.hasEvent      = isEventSupported;
+    Modernizr.hasEvent      = isEventSupported;
 
-    winkModernizr.testProp      = function(prop){
+    Modernizr.testProp      = function(prop){
         return testProps([prop]);
     };
 
-    winkModernizr.testAllProps  = testPropsAll;
+    Modernizr.testAllProps  = testPropsAll;
 
 
-    winkModernizr.testStyles    = injectElementWithStyles;
-    winkModernizr.prefixed      = function(prop, obj, elem){
+    Modernizr.testStyles    = injectElementWithStyles;
+    Modernizr.prefixed      = function(prop, obj, elem){
       if(!obj) {
         return testPropsAll(prop, 'pfx');
       } else {
@@ -650,18 +650,18 @@ window.winkModernizr = (function( window, document, undefined ) {
 
 
 
-    return winkModernizr;
+    return Modernizr;
 
 })(this, this.document);
 // contentEditable
 // http://www.whatwg.org/specs/web-apps/current-work/multipage/editing.html#contenteditable
 // by Addy Osmani
-winkModernizr.addTest('contenteditable', 'isContentEditable' in document.documentElement);
+Modernizr.addTest('contenteditable', 'isContentEditable' in document.documentElement);
 
 // by tauren
 // https://github.com/Modernizr/Modernizr/issues/191
 
-winkModernizr.addTest('cookies', function () {
+Modernizr.addTest('cookies', function () {
   // Quick test if browser has cookieEnabled host property
   if (navigator.cookieEnabled) return true;
   // Create cookie
@@ -674,14 +674,14 @@ winkModernizr.addTest('cookies', function () {
 
 // cors
 // By Theodoor van Donge
-winkModernizr.addTest('cors', 'withCredentials' in new XMLHttpRequest);
+Modernizr.addTest('cors', 'withCredentials' in new XMLHttpRequest);
 
-// re-using winkModernizr.input if available
+// re-using Modernizr.input if available
 
-winkModernizr.addTest('placeholder', function(){
+Modernizr.addTest('placeholder', function(){
 
-  return !!( 'placeholder' in ( winkModernizr.input    || document.createElement('input')    ) && 
-             'placeholder' in ( winkModernizr.textarea || document.createElement('textarea') )
+  return !!( 'placeholder' in ( Modernizr.input    || document.createElement('input')    ) && 
+             'placeholder' in ( Modernizr.textarea || document.createElement('textarea') )
            );
 
 });
@@ -694,7 +694,7 @@ winkModernizr.addTest('placeholder', function(){
 // related:
 // james.padolsey.com/javascript/detect-ie-in-js-using-conditional-comments/
 
-winkModernizr.addTest('ie8compat',function(){
+Modernizr.addTest('ie8compat',function(){
     return (!window.addEventListener && document.documentMode && document.documentMode === 7);
 });
 // native JSON support.
@@ -703,11 +703,11 @@ winkModernizr.addTest('ie8compat',function(){
 // this will also succeed if you've loaded the JSON2.js polyfill ahead of time
 //   ... but that should be obvious. :)
 
-winkModernizr.addTest('json', !!window.JSON && !!JSON.parse);
+Modernizr.addTest('json', !!window.JSON && !!JSON.parse);
 
 // requestAnimationFrame
 // Offload animation repainting to browser for optimized performance. 
 // http://dvcs.w3.org/hg/webperf/raw-file/tip/specs/RequestAnimationFrame/Overview.html
 // By Addy Osmani
 
-winkModernizr.addTest('raf', !!winkModernizr.prefixed('requestAnimationFrame', window));;
+Modernizr.addTest('raf', !!Modernizr.prefixed('requestAnimationFrame', window));;

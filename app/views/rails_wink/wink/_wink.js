@@ -13,7 +13,7 @@ profile.browser.height = window.innerHeight;
 profile.browser.availWidth = window.screen.availWidth;
 profile.browser.availHeight = window.screen.availHeight;
 
-profile.modernizr = winkModernizr;
+profile.modernizr = Modernizr;
 
 
 /* Detect Flash support */

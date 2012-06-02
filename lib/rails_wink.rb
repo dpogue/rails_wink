@@ -8,6 +8,6 @@ module RailsWink
   end
 
   def self.parse_config(yamlfile)
-    @@config.merge(yamlfile)
+    @@config.merge!(yamlfile)
   end
 end

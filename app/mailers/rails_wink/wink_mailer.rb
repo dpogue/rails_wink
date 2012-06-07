@@ -5,7 +5,7 @@ module RailsWink
     def report(datadump, desc = '[No description provided]', from = nil)
       @datadump = datadump
       @desc = desc
-      @from = from
+      @from = from || 'none@localhost'
 
       subject = ''.tap do |sub|
         sub << "#{RailsWink.config[:prefix]}: " if RailsWink.config[:prefix]

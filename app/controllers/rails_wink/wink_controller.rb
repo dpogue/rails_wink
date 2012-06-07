@@ -11,6 +11,10 @@ module RailsWink
       description = params[:desc]
       jsobj = params[:json]
 
+      if email.nil? or email.empty?
+        email = nil
+      end
+
       @msg = 'Thanks, that should help!'
 
       if jsobj.nil?

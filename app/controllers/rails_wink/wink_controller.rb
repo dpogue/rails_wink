@@ -21,8 +21,12 @@ module RailsWink
         @msg = "Unfortunately that didn't work."
       end
 
-      if jsobj && jsobj = JSON.parse(jsobj)
-        WinkMailer.report(jsobj, description, email).deliver
+      begin
+        if jsobj && jsobj = JSON.parse(jsobj)
+          WinkMailer.report(jsobj, description, email).deliver
+        end
+      rescue JSONException => e
+        Rails.logger.warn "rails_wink: caught JSON error #{e.message}"
       end
 
       render

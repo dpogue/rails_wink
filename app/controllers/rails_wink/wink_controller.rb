@@ -25,7 +25,7 @@ module RailsWink
         if jsobj && jsobj = JSON.parse(jsobj)
           WinkMailer.report(jsobj, description, email).deliver
         end
-      rescue JSONException => e
+      rescue JSON::ParserError => e
         Rails.logger.warn "rails_wink: caught JSON error #{e.message}"
       end
 
